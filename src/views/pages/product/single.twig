@@ -196,6 +196,7 @@
                         </div>
                     {% endif %}
                 </salla-slider>
+                {% if theme.settings.get('atara_image_note') %}<p class="at-dim mt-2">{{ theme.settings.get('atara_image_note') }}</p>{% endif %}
             </div>
 
             <div class="main-content md:sticky md:overflow-hidden top-24 w-full md:w-2/4">
@@ -212,7 +213,13 @@
                     </div>
                 {% endif %}
 
-                <h1 data-testid="store-product-title" class="text-xl md:text-2xl leading-10 font-bold mb-6 text-gray-800">{{ product.name }}</h1>
+                <div class="flex items-center justify-between gap-3 mb-2">
+                    {% if product.category %}<a class="at-tag at-tag--olive" href="{{ product.category.url }}">{{ product.category.name }}</a>{% else %}<span></span>{% endif %}
+                    {% if product.rating %}
+                        <salla-rating-stars data-testid="store-product-rating" value="{{ product.rating.stars }}" reviews="{{ product.rating.count }}"></salla-rating-stars>
+                    {% endif %}
+                </div>
+                <h1 data-testid="store-product-title" class="at-pdp-title mb-2">{{ product.name }}</h1>
 
                 {% if product.subtitle %}
                     <h2 class="product-entry__sub-title text-sm text-gray-500 leading-6 mb-2.5">
@@ -220,46 +227,7 @@
                     </h2>
                 {% endif %}
 
-                {% if product.rating %}
-                    <salla-rating-stars data-testid="store-product-rating" value="{{ product.rating.stars }}"
-                                        reviews="{{ product.rating.count }}"></salla-rating-stars>
-                {% endif %}
-
-                {% if product.is_taxable %}
-                    <small class="color-grey">{{ trans('pages.products.tax_included') }}</small>
-                {% endif %}
-                {# Price #}
-                <div data-testid="store-product-price" class="flex whitespace-nowrap gap-4 items-center">
-                  <div class="{{ product.is_on_sale ? '' : 'hidden' }} space-x-2 rtl:space-x-reverse whitespace-nowrap">
-                      <p class="text-red-800 font-bold text-xl inline-block">{{product.sale_price|money}}</p>
-                      <span class="text-gray-500 line-through">{{product.regular_price|money}}</span>
-                  </div>
-                  <div class="gap-4 {{ product.is_on_sale ? 'hidden' : 'flex' }}">
-                      {% if product.starting_price %} 
-                          <span class="">{{ trans('pages.products.starting_price') }}</span>
-                      {% endif %} 
-                          <p class=" font-bold text-xl inline-block"> {{product.starting_price ? product.starting_price|money : product.price|money }}</p>
-                  </div>
-                </div>
-
-                <div data-testid="store-product-description" class="product__description p-2 px-5 sm:p-1 leading-7 mb-3">
-                    {% set product_desc = product.description|replace({"&nbsp;":"\n"}) %}
-                    {% if product.has_read_more %}
-                        <article class="article article--main relative leading-8 overflow-hidden transition-all max-h-0 duration-300 py-4"
-                            id="more-content" style="max-height:5.25rem">
-                            {{ product_desc|raw }}
-                        </article>
-
-                        {# Read More Button #}
-                        <a id="btn-show-more" class="link--primary inline-block mt-2 cursor-pointer">
-                            {{ trans('pages.products.read_more') }}
-                        </a>
-                    {% else %}
-                        <article class="article--main pb-1">
-                            {{ product_desc|raw }}
-                        </article>
-                    {% endif %}
-                </div>
+                {# ATARA: description, SKU and fact card move below the buy box (see "at-pdp-details") #}
 
                 {% if product.tags|length and theme.settings.get('show_tags', true) %}
                     <div class="mb-3">
@@ -339,11 +307,6 @@
                 {% endif %}
                 {% hook 'product:single.description' %}
 
-                {# Installment Methods #}
-                <salla-installment data-testid="store-product-installment" price="{{ product.price }}"></salla-installment>
-                {% if product.has_metadata %}
-                <salla-metadata data-testid="store-product-metadata"></salla-metadata>
-                {% endif %}
 
                 {% if product.show_availability %}
                     <section class="bg-white p-5 rounded-md mb-5 last:mb-0">
@@ -384,29 +347,19 @@
 
                     {% hook 'product:single.form.end' %}
 
-                    <section class="flex bg-white p-5 sm:pb-0 rounded-md rounded-b-none">
-                        <div class="center-between w-full">
-                            <label class="form-label">
-                                <b class="block">
-                                    {{ trans('pages.products.price') }}
-                                </b>
-                            </label>
-
-                            <div class="flex whitespace-nowrap price-wrapper gap-4 items-center">
-                              <div class="{{ product.is_on_sale ? '' : 'hidden' }} price_is_on_sale space-x-2 rtl:space-x-reverse whitespace-nowrap">
-                                <h2 class="total-price text-red-800 font-bold text-xl inline-block">{{product.sale_price|money}}</h2>
-                                <span class="before-price text-gray-500 line-through">{{product.regular_price|money}}</span>
-                              </div>
-                              <div class="starting-or-normal-price gap-4 {{ product.is_on_sale ? 'hidden' : 'flex' }}">
-                                {% if product.starting_price %} 
-                                  <span class="starting-price-title">{{ trans('pages.products.starting_price') }}</span>
-                                {% endif %} 
-                                <h2 class="total-price font-bold text-xl inline-block"> {{product.starting_price ? product.starting_price|money : product.price|money }}</h2>
-                              </div>
-                            </div>
-
-                            <div data-testid="store-product-out-of-stock" class="out-of-stock min-h-7 leading-7 hidden text-base text-red-600 !opacity-50 font-bold">{{ trans('pages.products.out_of_stock')}}</div>
+                    <section class="flex items-end justify-between gap-3 py-3">
+                        <div class="flex whitespace-nowrap price-wrapper at-pdp-price items-baseline">
+                          <div class="{{ product.is_on_sale ? '' : 'hidden' }} price_is_on_sale space-x-2 rtl:space-x-reverse whitespace-nowrap">
+                            <h2 class="total-price inline-block">{{product.sale_price|money}}</h2>
+                            <span class="before-price">{{product.regular_price|money}}</span>
+                          </div>
+                          <div class="starting-or-normal-price gap-3 {{ product.is_on_sale ? 'hidden' : 'flex' }} items-baseline">
+                            {% if product.starting_price %}<span class="starting-price-title text-sm font-normal">{{ trans('pages.products.starting_price') }}</span>{% endif %}
+                            <h2 class="total-price inline-block"> {{product.starting_price ? product.starting_price|money : product.price|money }}</h2>
+                          </div>
                         </div>
+                        {% if product.is_taxable %}<small class="at-dim">{{ trans('pages.products.tax_included') }}</small>{% endif %}
+                        <div data-testid="store-product-out-of-stock" class="out-of-stock min-h-7 leading-7 hidden text-base !opacity-70 font-bold" style="color:var(--at-red)">{{ trans('pages.products.out_of_stock')}}</div>
                     </section>
                     {# Pre-order Campaign #}
                     {% if product.has_preorder_campaign %}
@@ -459,11 +412,46 @@
                     {% endif %}
                 </form>
 
+                {# ATARA: instalments after the purchase controls, never before them #}
+                <salla-installment data-testid="store-product-installment" price="{{ product.price }}" class="mt-4 block"></salla-installment>
+
+                {# ATARA: delivery / returns / branch / size help — plain facts next to the CTA #}
+                <div class="at-pdp-info mt-4">
+                  {% if theme.settings.get('atara_delivery_text') %}<div class="at-inforow"><i class="sicon-truck"></i><div>{{ theme.settings.get('atara_delivery_text') }}</div></div>{% endif %}
+                  {% if theme.settings.get('atara_returns_text') %}<div class="at-inforow"><i class="sicon-undo"></i><div>{{ theme.settings.get('atara_returns_text') }} {% if theme.settings.get('atara_help_url') %}· <a class="at-link" style="font-size:13px" href="{{ theme.settings.get('atara_help_url') }}">السياسة كاملة</a>{% endif %}</div></div>{% endif %}
+                  {% if theme.settings.get('atara_pdp_branch_text') %}<div class="at-inforow"><i class="sicon-location"></i><div>{{ theme.settings.get('atara_pdp_branch_text') }}</div></div>{% endif %}
+                  {% if theme.settings.get('atara_size_help_text') and theme.settings.get('atara_whatsapp') %}<div class="at-inforow"><i class="sicon-whatsapp"></i><div>{{ theme.settings.get('atara_size_help_text') }} · <a class="at-link" style="font-size:13px" target="_blank" rel="noopener" href="https://wa.me/{{ theme.settings.get('atara_whatsapp')|replace({'+':'',' ':''}) }}?text={{ ('سؤال عن المقاس: ' ~ product.name)|url_encode }}">واتساب</a></div></div>{% endif %}
+                </div>
+
                 {% hook 'product:single.description.end' %}
                 <salla-quick-order data-testid="store-product-quick-order" class="mt-5 md:-mb-2 block"></salla-quick-order>
             </div>
         </div>
         <salla-offer data-testid="store-product-offer"></salla-offer>
+    </div>
+
+    {# ATARA: fact card + description below the buy box (two columns on desktop) #}
+    <div class="container at-pdp-details">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-12">
+        <div>
+          {% if product.has_metadata %}
+            <h2 class="text-xl font-bold mb-3">{{ theme.settings.get('atara_facts_title', 'بطاقة حقيقة المنتج') }}</h2>
+            <div class="at-facts"><salla-metadata data-testid="store-product-metadata"></salla-metadata></div>
+          {% endif %}
+        </div>
+        <div>
+          <h2 class="text-xl font-bold mb-3">{{ trans('pages.products.description') }}</h2>
+          <div data-testid="store-product-description" class="product__description at-card leading-7">
+            {% set product_desc = product.description|replace({"&nbsp;":"\n"}) %}
+            {% if product.has_read_more %}
+              <article class="article article--main relative leading-8 overflow-hidden transition-all max-h-0 duration-300" id="more-content" style="max-height:7rem">{{ product_desc|raw }}</article>
+              <a id="btn-show-more" class="at-link inline-block mt-2 cursor-pointer">{{ trans('pages.products.read_more') }}</a>
+            {% else %}
+              <article class="article--main">{{ product_desc|raw }}</article>
+            {% endif %}
+          </div>
+        </div>
+      </div>
     </div>
 
     {#
