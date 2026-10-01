@@ -1,10 +1,10 @@
 {
     "name": {
-        "ar": "أتارا — أكتوبر 2026",
-        "en": "Atara Theme Oct 2026"
+        "ar": "أتارا",
+        "en": "Atara"
     },
-    "repository": "https://github.com/Noonalifyaa/atara-theme-oct-2026",
-    "author_email": "info@ay.sa",
+    "repository": "https://github.com/SallaApp/theme-raed",
+    "author_email": "support@salla.sa",
     "features": [
         "mega-menu",
         "fonts",
@@ -280,9 +280,735 @@
             "required": false,
             "value": false,
             "selected": false
+        },
+        {
+            "type": "static",
+            "id": "at-line0",
+            "format": "line"
+        },
+        {
+            "type": "static",
+            "format": "title",
+            "id": "at-title-brand",
+            "value": "<div class='rounded-lg' style='background-color:#606356;display:flex;justify-content:center;align-items:center;padding:15px;margin-bottom:20px !important;'><h6 style='color:#fff;font-size:15px;font-weight:bold'>أتارا — الهوية والنصوص</h6></div>",
+            "variant": "h6"
+        },
+        {
+            "type": "boolean",
+            "id": "atara_use_kufi",
+            "label": "استخدام خط Noto Kufi Arabic (بديل Droid Arabic Kufi)",
+            "format": "switch",
+            "icon": "sicon-toggle-off",
+            "required": false,
+            "value": true,
+            "description": "حسب دليل الهوية. أوقفه لاستخدام خط سلة المحدد.",
+            "selected": true
+        },
+        {
+            "type": "string",
+            "id": "atara_promo_text",
+            "label": "نص الشريط العلوي",
+            "format": "text",
+            "icon": "sicon-format-text-alt",
+            "required": false,
+            "value": "شحن عادي مجاني فوق 399 ر.س داخل المملكة · التوصيل 2–4 أيام عمل · الاستبدال خلال 7 أيام من الاستلام",
+            "description": "يظهر فوق الهيدر في كل الصفحات. اتركه فارغًا لإخفائه.",
+            "maxLength": 200
+        },
+        {
+            "type": "string",
+            "id": "atara_free_shipping_threshold",
+            "label": "حد الشحن المجاني (ر.س) — لرسالة السلة",
+            "format": "text",
+            "icon": "sicon-format-text-alt",
+            "required": false,
+            "value": "399",
+            "description": "يجب أن يطابق قاعدة الشحن المضبوطة في إعدادات الشحن.",
+            "maxLength": 10
+        },
+        {
+            "type": "string",
+            "id": "atara_footer_tagline",
+            "label": "وصف العلامة في الفوتر",
+            "format": "text",
+            "icon": "sicon-format-text-alt",
+            "required": false,
+            "value": "ملابس ومختارات نسائية محتشمة للصلاة ويومك وسفرك ولحظات الإهداء. أناقة تعيشينها براحة.",
+            "description": null,
+            "maxLength": 200
+        },
+        {
+            "type": "string",
+            "id": "atara_branch_text",
+            "label": "نص الفرع",
+            "format": "text",
+            "icon": "sicon-format-text-alt",
+            "required": false,
+            "value": "فرع جدة — حي الحمراء، شارع فلسطين",
+            "description": null,
+            "maxLength": 120
+        },
+        {
+            "type": "string",
+            "id": "atara_branch_url",
+            "label": "رابط صفحة الفروع",
+            "format": "text",
+            "icon": "sicon-format-text-alt",
+            "required": false,
+            "value": "/فروع-أتارا-بوتيك/page-829977526",
+            "description": null,
+            "maxLength": 200
+        },
+        {
+            "type": "string",
+            "id": "atara_whatsapp",
+            "label": "رقم واتساب (بالصيغة الدولية)",
+            "format": "text",
+            "icon": "sicon-format-text-alt",
+            "required": false,
+            "value": "+966536636222",
+            "description": null,
+            "maxLength": 20
+        },
+        {
+            "type": "string",
+            "id": "atara_track_url",
+            "label": "رابط تتبّع الطلب",
+            "format": "text",
+            "icon": "sicon-format-text-alt",
+            "required": false,
+            "value": "/customer/orders",
+            "description": null,
+            "maxLength": 200
+        },
+        {
+            "type": "string",
+            "id": "atara_help_url",
+            "label": "رابط المساعدة والسياسات",
+            "format": "text",
+            "icon": "sicon-format-text-alt",
+            "required": false,
+            "value": "/سياسة-الاستبدال-الإسترجاع/page-877218025",
+            "description": null,
+            "maxLength": 200
+        },
+        {
+            "type": "string",
+            "id": "atara_help_title",
+            "label": "عنوان مجموعة المساعدة في الفوتر",
+            "format": "text",
+            "icon": "sicon-format-text-alt",
+            "required": false,
+            "value": "المساعدة",
+            "description": null,
+            "maxLength": 40
+        },
+        {
+            "id": "atara_help_links",
+            "type": "collection",
+            "format": "collection",
+            "required": false,
+            "minLength": 0,
+            "maxLength": 8,
+            "item_label": "رابط",
+            "label": "روابط المساعدة",
+            "value": [
+                {
+                    "atara_help_links.title": "دليل المقاسات",
+                    "atara_help_links.url": "/"
+                },
+                {
+                    "atara_help_links.title": "سياسة الاستبدال والاسترجاع",
+                    "atara_help_links.url": "/سياسة-الاستبدال-الإسترجاع/page-877218025"
+                },
+                {
+                    "atara_help_links.title": "الشحن والتوصيل",
+                    "atara_help_links.url": "/"
+                },
+                {
+                    "atara_help_links.title": "تتبّع طلبك",
+                    "atara_help_links.url": "/customer/orders"
+                }
+            ],
+            "fields": [
+                {
+                    "type": "string",
+                    "id": "atara_help_links.title",
+                    "label": "العنوان",
+                    "format": "text",
+                    "required": true,
+                    "maxLength": 60,
+                    "icon": "sicon-format-text-alt"
+                },
+                {
+                    "type": "string",
+                    "id": "atara_help_links.url",
+                    "label": "الرابط",
+                    "format": "text",
+                    "required": true,
+                    "maxLength": 200,
+                    "icon": "sicon-link"
+                }
+            ]
+        },
+        {
+            "type": "static",
+            "id": "at-line1",
+            "format": "line"
+        },
+        {
+            "type": "static",
+            "format": "title",
+            "id": "at-title-pdp",
+            "value": "<div class='rounded-lg' style='background-color:#606356;display:flex;justify-content:center;align-items:center;padding:15px;margin-bottom:20px !important;'><h6 style='color:#fff;font-size:15px;font-weight:bold'>أتارا — صفحة المنتج</h6></div>",
+            "variant": "h6"
+        },
+        {
+            "type": "string",
+            "id": "atara_delivery_text",
+            "label": "سطر التوصيل",
+            "format": "text",
+            "icon": "sicon-format-text-alt",
+            "required": false,
+            "value": "التوصيل العادي 2–4 أيام عمل · 25 ر.س، مجاني عند تجاوز 399 ر.س · موعد الوصول يظهر عند إتمام الطلب",
+            "description": null,
+            "maxLength": 220
+        },
+        {
+            "type": "string",
+            "id": "atara_returns_text",
+            "label": "سطر الاستبدال والاسترجاع",
+            "format": "text",
+            "icon": "sicon-format-text-alt",
+            "required": false,
+            "value": "استبدال أو استرجاع خلال 7 أيام من الاستلام للقطع غير المستخدمة بتغليفها. عند الاسترجاع لغير عيب تُخصم رسوم إعادة الشحن (56 ر.س داخل المملكة)؛ العيب أو الخطأ منّا: استرجاع كامل.",
+            "description": null,
+            "maxLength": 300
+        },
+        {
+            "type": "string",
+            "id": "atara_pdp_branch_text",
+            "label": "سطر الفرع",
+            "format": "text",
+            "icon": "sicon-format-text-alt",
+            "required": false,
+            "value": "متوفر في فرع جدة حي الحمراء — جرّبي القياس قبل الشراء",
+            "description": null,
+            "maxLength": 160
+        },
+        {
+            "type": "string",
+            "id": "atara_size_help_text",
+            "label": "سطر المساعدة في المقاس",
+            "format": "text",
+            "icon": "sicon-format-text-alt",
+            "required": false,
+            "value": "سؤال عن المقاس؟ أرسلي طولك المعتاد ونوضح القياس المناسب",
+            "description": null,
+            "maxLength": 160
+        },
+        {
+            "type": "string",
+            "id": "atara_facts_title",
+            "label": "عنوان بطاقة حقيقة المنتج",
+            "format": "text",
+            "icon": "sicon-format-text-alt",
+            "required": false,
+            "value": "بطاقة حقيقة المنتج — القياسات بالسنتيمتر للقطعة نفسها لا للجسم",
+            "description": null,
+            "maxLength": 120
+        },
+        {
+            "type": "string",
+            "id": "atara_image_note",
+            "label": "ملاحظة الصور تحت المعرض",
+            "format": "text",
+            "icon": "sicon-format-text-alt",
+            "required": false,
+            "value": "الصور للمنتج الفعلي · لم تُعدَّل الألوان رقميًا",
+            "description": null,
+            "maxLength": 120
         }
     ],
     "components": [
+        {
+            "key": "abdd311a-6060-4243-baa2-700d9cebb5dd",
+            "title": {
+                "en": "Atara — Hero",
+                "ar": "أتارا — الافتتاحية"
+            },
+            "icon": "sicon-image",
+            "path": "home.atara-hero",
+            "image": "",
+            "is_default": false,
+            "fields": [
+                {
+                    "type": "string",
+                    "icon": "sicon-image",
+                    "id": "image",
+                    "label": "صورة الافتتاحية",
+                    "format": "image",
+                    "required": true,
+                    "value": null,
+                    "description": "الصورة الفعلية لمنتج متاح؛ لا عارضة بلا علاقة بالمخزون."
+                },
+                {
+                    "type": "string",
+                    "icon": "sicon-format-text-alt",
+                    "label": "سطر صغير فوق العنوان",
+                    "multilanguage": true,
+                    "id": "kicker",
+                    "value": "أتارا بوتيك",
+                    "required": false,
+                    "format": "text",
+                    "maxLength": 40,
+                    "placeholder": null,
+                    "description": null
+                },
+                {
+                    "type": "string",
+                    "icon": "sicon-format-text-alt",
+                    "label": "العنوان",
+                    "multilanguage": true,
+                    "id": "title",
+                    "value": "أناقة تعيشينها براحة.",
+                    "required": true,
+                    "format": "text",
+                    "maxLength": 80,
+                    "placeholder": null,
+                    "description": null
+                },
+                {
+                    "type": "string",
+                    "icon": "sicon-format-text-alt",
+                    "label": "النص",
+                    "multilanguage": true,
+                    "id": "lead",
+                    "value": "ملابس ومختارات للصلاة ويومك وسفرك ولحظات الإهداء — بتفاصيل واضحة تساعدك على الاختيار بثقة.",
+                    "required": false,
+                    "format": "text",
+                    "maxLength": 200,
+                    "placeholder": null,
+                    "description": null
+                },
+                {
+                    "type": "string",
+                    "icon": "sicon-format-text-alt",
+                    "label": "نص الزر الأساسي",
+                    "multilanguage": true,
+                    "id": "cta1_text",
+                    "value": "تسوّقي شراشف الصلاة",
+                    "required": false,
+                    "format": "text",
+                    "maxLength": 40,
+                    "placeholder": null,
+                    "description": null
+                },
+                {
+                    "type": "string",
+                    "id": "cta1_url",
+                    "label": "رابط الزر الأساسي",
+                    "format": "text",
+                    "required": false,
+                    "value": null,
+                    "icon": "sicon-link",
+                    "maxLength": 300,
+                    "multilanguage": false
+                },
+                {
+                    "type": "string",
+                    "icon": "sicon-format-text-alt",
+                    "label": "نص الزر الثانوي",
+                    "multilanguage": true,
+                    "id": "cta2_text",
+                    "value": "سجاجيد الصلاة",
+                    "required": false,
+                    "format": "text",
+                    "maxLength": 40,
+                    "placeholder": null,
+                    "description": null
+                },
+                {
+                    "type": "string",
+                    "id": "cta2_url",
+                    "label": "رابط الزر الثانوي",
+                    "format": "text",
+                    "required": false,
+                    "value": null,
+                    "icon": "sicon-link",
+                    "maxLength": 300,
+                    "multilanguage": false
+                }
+            ]
+        },
+        {
+            "key": "2ee4b343-6af4-4864-9a82-0bcb1d28f0b0",
+            "title": {
+                "en": "Atara — Category grid",
+                "ar": "أتارا — شبكة التصنيفات"
+            },
+            "icon": "sicon-layout-grid-rearrange",
+            "path": "home.atara-categories",
+            "image": "",
+            "is_default": false,
+            "fields": [
+                {
+                    "type": "string",
+                    "icon": "sicon-format-text-alt",
+                    "label": "العنوان",
+                    "multilanguage": true,
+                    "id": "title",
+                    "value": "تسوّقي حسب التصنيف",
+                    "required": false,
+                    "format": "text",
+                    "maxLength": 60,
+                    "placeholder": null,
+                    "description": null
+                },
+                {
+                    "type": "string",
+                    "icon": "sicon-format-text-alt",
+                    "label": "نص رابط الكل",
+                    "multilanguage": true,
+                    "id": "all_text",
+                    "value": "كل التصنيفات",
+                    "required": false,
+                    "format": "text",
+                    "maxLength": 40,
+                    "placeholder": null,
+                    "description": null
+                },
+                {
+                    "type": "string",
+                    "id": "all_url",
+                    "label": "رابط الكل",
+                    "format": "text",
+                    "required": false,
+                    "value": null,
+                    "icon": "sicon-link",
+                    "maxLength": 300,
+                    "multilanguage": false
+                },
+                {
+                    "id": "categories",
+                    "type": "items",
+                    "format": "dropdown-list",
+                    "label": "التصنيفات (8 مقترحة)",
+                    "icon": "sicon-keyboard_arrow_down",
+                    "selected": [],
+                    "options": [],
+                    "source": "categories",
+                    "multichoice": true,
+                    "searchable": true,
+                    "required": true
+                }
+            ]
+        },
+        {
+            "key": "2896fdcd-ea6b-4af6-9de7-80b4687c5b12",
+            "title": {
+                "en": "Atara — Occasions",
+                "ar": "أتارا — مختارات حسب المناسبة"
+            },
+            "icon": "sicon-star",
+            "path": "home.atara-occasions",
+            "image": "",
+            "is_default": false,
+            "fields": [
+                {
+                    "type": "string",
+                    "icon": "sicon-format-text-alt",
+                    "label": "العنوان",
+                    "multilanguage": true,
+                    "id": "title",
+                    "value": "مختارات حسب المناسبة",
+                    "required": false,
+                    "format": "text",
+                    "maxLength": 60,
+                    "placeholder": null,
+                    "description": null
+                },
+                {
+                    "type": "string",
+                    "icon": "sicon-format-text-alt",
+                    "label": "نص جانبي",
+                    "multilanguage": true,
+                    "id": "subtitle",
+                    "value": "صفحات منسّقة من التصنيفات نفسها",
+                    "required": false,
+                    "format": "text",
+                    "maxLength": 80,
+                    "placeholder": null,
+                    "description": null
+                },
+                {
+                    "id": "items",
+                    "type": "collection",
+                    "format": "collection",
+                    "required": true,
+                    "minLength": 2,
+                    "maxLength": 4,
+                    "item_label": "مناسبة",
+                    "label": "المناسبات",
+                    "value": [
+                        {
+                            "items.icon": "sicon-sun",
+                            "items.title": "ليومك",
+                            "items.url": "/"
+                        },
+                        {
+                            "items.icon": "sicon-moon",
+                            "items.title": "للصلاة",
+                            "items.url": "/"
+                        },
+                        {
+                            "items.icon": "sicon-plane",
+                            "items.title": "للسفر",
+                            "items.url": "/"
+                        },
+                        {
+                            "items.icon": "sicon-gift",
+                            "items.title": "للهدايا",
+                            "items.url": "/"
+                        }
+                    ],
+                    "fields": [
+                        {
+                            "type": "string",
+                            "id": "items.icon",
+                            "label": "الأيقونة (sicon-*)",
+                            "format": "text",
+                            "required": true,
+                            "maxLength": 40,
+                            "icon": "sicon-star"
+                        },
+                        {
+                            "type": "string",
+                            "id": "items.title",
+                            "label": "العنوان",
+                            "format": "text",
+                            "required": true,
+                            "maxLength": 30,
+                            "icon": "sicon-format-text-alt",
+                            "multilanguage": true
+                        },
+                        {
+                            "type": "string",
+                            "id": "items.url",
+                            "label": "الرابط",
+                            "format": "text",
+                            "required": true,
+                            "maxLength": 300,
+                            "icon": "sicon-link"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "key": "cba4a092-4df4-4a54-9293-83d1e84837d4",
+            "title": {
+                "en": "Atara — Offer block",
+                "ar": "أتارا — عرض بشروط واضحة"
+            },
+            "icon": "sicon-discount-calculator",
+            "path": "home.atara-offer",
+            "image": "",
+            "is_default": false,
+            "fields": [
+                {
+                    "type": "string",
+                    "icon": "sicon-format-text-alt",
+                    "label": "الوسم",
+                    "multilanguage": true,
+                    "id": "tag",
+                    "value": "عرض محدود",
+                    "required": false,
+                    "format": "text",
+                    "maxLength": 30,
+                    "placeholder": null,
+                    "description": null
+                },
+                {
+                    "type": "string",
+                    "icon": "sicon-format-text-alt",
+                    "label": "العنوان",
+                    "multilanguage": true,
+                    "id": "title",
+                    "value": "قطعتان من الشراشف الإسبانية بـ 196 ر.س",
+                    "required": true,
+                    "format": "text",
+                    "maxLength": 80,
+                    "placeholder": null,
+                    "description": null
+                },
+                {
+                    "type": "string",
+                    "icon": "sicon-format-text-alt",
+                    "label": "الشروط (السعر الفردي، المدة، الاستثناءات)",
+                    "multilanguage": true,
+                    "id": "terms",
+                    "value": "سعر القطعة الواحدة 110 ر.س · يُطبّق الخصم تلقائيًا عند إضافة قطعتين من الشراشف المشمولة · حتى 7 أكتوبر 2026 · لا يُجمع مع كود خصم آخر",
+                    "required": true,
+                    "format": "text",
+                    "maxLength": 300,
+                    "placeholder": null,
+                    "description": null
+                },
+                {
+                    "type": "string",
+                    "icon": "sicon-format-text-alt",
+                    "label": "نص الزر",
+                    "multilanguage": true,
+                    "id": "button_text",
+                    "value": "شاهدي الشراشف المشمولة",
+                    "required": false,
+                    "format": "text",
+                    "maxLength": 40,
+                    "placeholder": null,
+                    "description": null
+                },
+                {
+                    "type": "string",
+                    "id": "url",
+                    "label": "الرابط",
+                    "format": "text",
+                    "required": true,
+                    "value": null,
+                    "icon": "sicon-link",
+                    "maxLength": 300,
+                    "multilanguage": false
+                }
+            ]
+        },
+        {
+            "key": "538d9561-ccdf-482e-8e2a-f5fade5ee41c",
+            "title": {
+                "en": "Atara — Trust strip",
+                "ar": "أتارا — شريط الثقة"
+            },
+            "icon": "sicon-shield",
+            "path": "home.atara-trust",
+            "image": "",
+            "is_default": false,
+            "fields": [
+                {
+                    "id": "items",
+                    "type": "collection",
+                    "format": "collection",
+                    "required": true,
+                    "minLength": 2,
+                    "maxLength": 4,
+                    "item_label": "عنصر",
+                    "label": "العناصر",
+                    "value": [
+                        {
+                            "items.icon": "sicon-truck",
+                            "items.title": "توصيل 2–4 أيام",
+                            "items.text": "لكل مدن المملكة، مجاني فوق 399 ر.س"
+                        },
+                        {
+                            "items.icon": "sicon-undo",
+                            "items.title": "استبدال خلال 7 أيام",
+                            "items.text": "وفق سياسة واضحة بلا مفاجآت"
+                        },
+                        {
+                            "items.icon": "sicon-location",
+                            "items.title": "فرع جدة",
+                            "items.text": "حي الحمراء — جرّبي القياس بنفسك"
+                        },
+                        {
+                            "items.icon": "sicon-whatsapp",
+                            "items.title": "مساعدة في الاختيار",
+                            "items.text": "واتساب 9ص–11م، نرد على سؤال المقاس"
+                        }
+                    ],
+                    "fields": [
+                        {
+                            "type": "string",
+                            "id": "items.icon",
+                            "label": "الأيقونة (sicon-*)",
+                            "format": "text",
+                            "required": true,
+                            "maxLength": 40,
+                            "icon": "sicon-star"
+                        },
+                        {
+                            "type": "string",
+                            "id": "items.title",
+                            "label": "العنوان",
+                            "format": "text",
+                            "required": true,
+                            "maxLength": 40,
+                            "icon": "sicon-format-text-alt",
+                            "multilanguage": true
+                        },
+                        {
+                            "type": "string",
+                            "id": "items.text",
+                            "label": "النص",
+                            "format": "text",
+                            "required": false,
+                            "maxLength": 80,
+                            "icon": "sicon-format-text-alt",
+                            "multilanguage": true
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "key": "31615752-d029-4840-95f7-2bd94ff37a16",
+            "title": {
+                "en": "Atara — Help card",
+                "ar": "أتارا — تحتاجين مساعدة؟"
+            },
+            "icon": "sicon-whatsapp",
+            "path": "home.atara-help",
+            "image": "",
+            "is_default": false,
+            "fields": [
+                {
+                    "type": "string",
+                    "icon": "sicon-format-text-alt",
+                    "label": "العنوان",
+                    "multilanguage": true,
+                    "id": "title",
+                    "value": "تحتاجين مساعدة في الاختيار؟",
+                    "required": false,
+                    "format": "text",
+                    "maxLength": 60,
+                    "placeholder": null,
+                    "description": null
+                },
+                {
+                    "type": "string",
+                    "icon": "sicon-format-text-alt",
+                    "label": "النص",
+                    "multilanguage": true,
+                    "id": "text",
+                    "value": "أرسلي اسم القطعة ومقاسك المعتاد وسنوضح لك قياسات القطعة المتاحة.",
+                    "required": false,
+                    "format": "text",
+                    "maxLength": 160,
+                    "placeholder": null,
+                    "description": null
+                },
+                {
+                    "type": "string",
+                    "icon": "sicon-format-text-alt",
+                    "label": "نص الزر",
+                    "multilanguage": true,
+                    "id": "button_text",
+                    "value": "تواصلي معنا",
+                    "required": false,
+                    "format": "text",
+                    "maxLength": 30,
+                    "placeholder": null,
+                    "description": null
+                }
+            ]
+        },
         {
             "key": "186b3f4f-25cf-4d3c-abca-cef7eed6f0ab",
             "title": {
@@ -1140,9 +1866,9 @@
             ]
         }
     ],
-    "support_url": null,
+    "support_url": "https://salla.com/",
     "description": {
-        "ar": "",
-        "en": ""
+        "ar": "ثيم أتارا بوتيك — أناقة تعيشينها براحة",
+        "en": "Atara Boutique theme"
     }
 }
