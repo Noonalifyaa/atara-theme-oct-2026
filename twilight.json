@@ -305,6 +305,17 @@
             "selected": true
         },
         {
+            "id": "atara_brand_colors",
+            "type": "boolean",
+            "label": "تثبيت ألوان أتارا (الزيتوني كلون أساسي)",
+            "value": true,
+            "format": "switch",
+            "icon": "sicon-toggle-off",
+            "required": false,
+            "selected": true,
+            "description": "يثبّت اللون الأساسي على زيتوني أتارا #606356 حسب دليل الهوية مهما كان اختيار لوحة التحكم."
+        },
+        {
             "type": "string",
             "id": "atara_promo_text",
             "label": "نص الشريط العلوي",
