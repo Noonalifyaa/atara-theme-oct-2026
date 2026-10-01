@@ -1,0 +1,10 @@
+{# ATARA trust strip — delivery, returns, branch, help #}
+<section component-id="{{ componentId }}" data-testid="store-home-atara-trust" class="s-block s-block--atara-trust">
+  <div class="container">
+    <div class="at-trust">
+      {% for item in component.items %}
+        <div class="at-trust__t"><i class="{{ item.icon }}"></i><div><b>{{ item.title }}</b><span>{{ item.text }}</span></div></div>
+      {% endfor %}
+    </div>
+  </div>
+</section>

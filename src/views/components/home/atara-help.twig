@@ -1,0 +1,11 @@
+{# ATARA help card — WhatsApp size help (uses the theme-level WhatsApp number) #}
+{% set wa = theme.settings.get('atara_whatsapp') %}
+<section component-id="{{ componentId }}" data-testid="store-home-atara-help" class="s-block s-block--atara-help">
+  <div class="container">
+    <div class="at-help">
+      <div class="at-help__ic"><i class="sicon-whatsapp"></i></div>
+      <div class="flex-1"><b>{{ component.title }}</b><span>{{ component.text }}</span></div>
+      {% if wa and component.button_text %}<a class="btn btn--primary hidden lg:inline-flex" href="https://wa.me/{{ wa|replace({'+':'',' ':''}) }}" target="_blank" rel="noopener">{{ component.button_text }}</a>{% endif %}
+    </div>
+  </div>
+</section>

@@ -1,0 +1,11 @@
+{# ATARA occasions — compact curated row, never a menu entry (review v3) #}
+<section component-id="{{ componentId }}" data-testid="store-home-atara-occasions" class="s-block s-block--atara-occasions">
+  <div class="container">
+    <div class="at-sec-head"><h2 style="font-size:17px">{{ component.title }}</h2>{% if component.subtitle %}<span class="at-dim">{{ component.subtitle }}</span>{% endif %}</div>
+    <div class="at-occs">
+      {% for item in component.items %}
+        <a class="at-occ" href="{{ item.url }}"><i class="{{ item.icon }}"></i><span>{{ item.title }}</span></a>
+      {% endfor %}
+    </div>
+  </div>
+</section>

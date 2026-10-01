@@ -1,0 +1,14 @@
+{# ATARA offer block — unit price, trigger, expiry and exclusions always visible (no scarcity timers) #}
+<section component-id="{{ componentId }}" data-testid="store-home-atara-offer" class="s-block s-block--atara-offer">
+  <div class="container">
+    <div class="at-offer">
+      <svg class="at-offer__strips" viewBox="0 0 260 160" aria-hidden="true"><g fill="#fff"><path d="M40 160 L110 0 h34 L74 160z"/><path d="M98 160 L168 0 h34 L132 160z"/><path d="M156 160 L226 0 h34 L190 160z"/></g></svg>
+      <div>
+        {% if component.tag %}<span class="at-offer__tag">{{ component.tag }}</span>{% endif %}
+        <h2>{{ component.title }}</h2>
+        {% if component.terms %}<div class="at-offer__terms">{{ component.terms }}</div>{% endif %}
+      </div>
+      {% if component.button_text %}<a class="btn" href="{{ component.url }}">{{ component.button_text }}</a>{% endif %}
+    </div>
+  </div>
+</section>

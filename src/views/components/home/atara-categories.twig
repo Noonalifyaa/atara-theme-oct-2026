@@ -1,0 +1,18 @@
+{# ATARA category grid — categories are the main browsing route (review v3) #}
+<section component-id="{{ componentId }}" data-testid="store-home-atara-categories" class="s-block s-block--atara-categories">
+  <div class="container">
+    <div class="at-sec-head">
+      {% if component.title %}<h2>{{ component.title }}</h2>{% endif %}
+      {% if component.all_text %}<a class="at-link" href="{{ component.all_url ?: link('categories') }}">{{ component.all_text }} <i class="sicon-keyboard_arrow_left rtl:inline ltr:hidden"></i><i class="sicon-keyboard_arrow_right ltr:inline rtl:hidden"></i></a>{% endif %}
+    </div>
+    <div class="at-catgrid">
+      {% for cat in component.categories %}
+        <a class="at-catcard" href="{{ cat.url }}">
+          <div class="at-catcard__thumb"><img src="{{ cat.image ? cat.image|cdn(400) : 'images/placeholder.png'|asset }}" alt="{{ cat.name }}" loading="lazy"></div>
+          <div class="at-catcard__n">{{ cat.name }}</div>
+          {% if cat.products_count is defined and cat.products_count %}<div class="at-catcard__c">{{ cat.products_count }} منتجًا</div>{% endif %}
+        </a>
+      {% endfor %}
+    </div>
+  </div>
+</section>

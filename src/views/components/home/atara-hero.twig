@@ -1,0 +1,19 @@
+{# ATARA hero — one real product image, the brand signature, one primary CTA (strategy p.23) #}
+<section component-id="{{ componentId }}" data-testid="store-home-atara-hero" class="s-block s-block--atara-hero">
+  <div class="container">
+    <div class="at-hero">
+      <div class="at-hero__art">
+        {% if component.image %}<img src="{{ component.image|cdn(1200) }}" alt="{{ component.title }}" fetchpriority="high" loading="eager">{% endif %}
+      </div>
+      <div class="at-hero__copy">
+        {% if component.kicker %}<div class="at-hero__kicker">{{ component.kicker }}</div>{% endif %}
+        <h2 class="at-hero__title">{{ component.title }}</h2>
+        {% if component.lead %}<p class="at-hero__lead">{{ component.lead }}</p>{% endif %}
+        <div class="at-hero__cta">
+          {% if component.cta1_text %}<a class="btn btn--primary" href="{{ component.cta1_url ?: '#' }}">{{ component.cta1_text }}</a>{% endif %}
+          {% if component.cta2_text %}<a class="btn btn--secondary" href="{{ component.cta2_url ?: '#' }}">{{ component.cta2_text }}</a>{% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
