@@ -1,10 +1,10 @@
 {
     "name": {
-        "ar": "رائد",
-        "en": "Theme Raed"
+        "ar": "أتارا — أكتوبر 2026",
+        "en": "Atara Theme Oct 2026"
     },
-    "repository": "https://github.com/SallaApp/theme-raed",
-    "author_email": "support@salla.sa",
+    "repository": "https://github.com/Noonalifyaa/atara-theme-oct-2026",
+    "author_email": "info@ay.sa",
     "features": [
         "mega-menu",
         "fonts",
@@ -1140,10 +1140,9 @@
             ]
         }
     ],
-    "support_url": "https://salla.com/",
+    "support_url": null,
     "description": {
-        "ar": "مجموعة كبيرة من المزايا لدعم تجارتك وتقديم تجربة تسوق مثيرة لعملائك",
-        "en": "A wide range of features to support your business and provide an exciting shopping experience for your customers"
+        "ar": "",
+        "en": ""
     }
 }
-
