@@ -74,6 +74,13 @@
         window.enable_more_menu = "{{ theme.settings.get('enable_more_menu', true) }}"
         window.enable_add_product_toast = "{{ theme.settings.get('enable_add_product_toast', true) }}"
         window.notify_when_available_in_card = "{{ theme.settings.get('notify_when_available_in_card', true) }}"
+        window.atara = {
+            trackUrl: {{ theme.settings.get('atara_track_url', '') | json_encode | raw }},
+            helpUrl: {{ theme.settings.get('atara_help_url', '') | json_encode | raw }},
+            branchText: {{ theme.settings.get('atara_branch_text', '') | json_encode | raw }},
+            branchUrl: {{ theme.settings.get('atara_branch_url', '') | json_encode | raw }},
+            whatsapp: {{ theme.settings.get('atara_whatsapp', '') | json_encode | raw }}
+        }
     </script>
     
     {% hook 'head:start' %}
