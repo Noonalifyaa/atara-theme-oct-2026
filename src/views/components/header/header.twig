@@ -57,13 +57,15 @@ seven approved entries: شراشف الصلاة · سجاجيد الصلاة · 
           <salla-search data-testid="store-header-search-mobile" inline oval height="46"></salla-search>
         </div>
       </div>
+
+      {# Desktop main menu — 7 entries, dropdowns for grouped categories.
+         Lives inside .inner so Raed's sticky-header height calc and pinning include it. #}
+      <nav class="at-nav" aria-label="main">
+        <div class="container">
+          <custom-main-menu></custom-main-menu>
+        </div>
+      </nav>
     </div>
 
-    {# Desktop main menu — 7 entries, dropdowns for grouped categories #}
-    <nav class="at-nav" aria-label="main">
-      <div class="container">
-        <custom-main-menu></custom-main-menu>
-      </div>
-    </nav>
   </div>
 </header>
