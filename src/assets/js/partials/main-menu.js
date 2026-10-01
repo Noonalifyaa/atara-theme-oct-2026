@@ -55,8 +55,23 @@ class NavigationMenu extends HTMLElement {
     * @returns {String}
     */
     getDesktopClasses(menu, isRootMenu) {
+        const isOffers = isRootMenu && /عروض|offers|تخفيض/i.test(menu.title || '');
+        let isActive = false;
+        try { isActive = isRootMenu && menu.url && new URL(menu.url, location.origin).pathname === location.pathname; } catch (e) {}
         return `!hidden lg:!block ${isRootMenu ? 'root-level lg:!inline-block' : 'relative'} ${menu.products ? ' mega-menu' : ''}
-        ${this.hasChildren(menu) ? ' has-children' : ''}`
+        ${this.hasChildren(menu) ? ' has-children' : ''}${isOffers ? ' at-offers' : ''}${isActive ? ' is-active' : ''}`
+    }
+
+    /** ATARA: utility links shown at the bottom of the mobile drawer (tracking, help, branch, WhatsApp) */
+    getMobileUtils() {
+        const u = window.atara || {};
+        const rows = [
+            u.trackUrl ? `<li><a href="${u.trackUrl}"><i class="sicon-box-bankers"></i><span>${u.trackLabel || 'تتبّع طلبك'}</span></a></li>` : '',
+            u.helpUrl ? `<li><a href="${u.helpUrl}"><i class="sicon-help-circle"></i><span>${u.helpLabel || 'المساعدة والسياسات'}</span></a></li>` : '',
+            u.branchText ? `<li><a href="${u.branchUrl || '#'}"><i class="sicon-location"></i><span>${u.branchText}</span></a></li>` : '',
+            u.whatsapp ? `<li><a href="https://wa.me/${u.whatsapp.replace(/[^0-9]/g,'')}" target="_blank" rel="noopener"><i class="sicon-whatsapp"></i><span><bdi dir="ltr">${u.whatsapp}</bdi></span></a></li>` : '',
+        ].join('');
+        return rows ? `<ul class="at-mobile-utils lg:hidden">${rows}</ul>` : '';
     }
 
     /**
@@ -266,6 +281,7 @@ class NavigationMenu extends HTMLElement {
         this.innerHTML =  `
         <nav id="mobile-menu" class="mobile-menu">
             <ul class="main-menu">${this.getMenus()}</ul>
+            ${this.getMobileUtils()}
             <button class="btn--close close-mobile-menu sicon-cancel lg:hidden"></button>
         </nav>
         <button class="btn--close-sm close-mobile-menu sicon-cancel hidden"></button>`;
