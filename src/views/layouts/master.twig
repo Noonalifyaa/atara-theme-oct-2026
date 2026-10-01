@@ -105,6 +105,13 @@
             /* Theme specific variables */
             --s-radius: .75rem;
             {% if theme.settings.get('atara_use_kufi', true) %}--font-main: 'Noto Kufi Arabic', '{{theme.font.name}}', sans-serif;{% endif %}
+            {% if theme.settings.get('atara_brand_colors', true) %}
+            /* Atara brand lock: olive primary regardless of the admin colour picker */
+            --color-primary: #606356;
+            --color-primary-dark: #4C4F44;
+            --color-primary-light: #777A6C;
+            --color-primary-reverse: #FFFFFF;
+            {% endif %}
         }
     </style>
     {# tracking services, custom css feature. #}
