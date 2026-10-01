@@ -88,6 +88,15 @@
 
   /* ---------------------------------------------------------------- header */
   .store-header { background: #fff; border-bottom: 1px solid var(--at-line); }
+  /* Raed measures #mainnav .inner once at load+500ms and freezes #mainnav's height; Salla web
+     components (search, cart) hydrate later and grow it, so main would overlap the header.
+     Let the container size itself unless the bar is pinned. */
+  .main-nav-container:not(.fixed-pinned) { height: auto !important; }
+  @media (max-width: 1023.98px) {
+    .main-nav-container.fixed-pinned .inner { top: 0; transform: none; }
+    .main-nav-container.fixed-pinned .at-mobile-search { display: none; }   /* compact bar when pinned */
+    a.at-iconbtn.hidden { display: none; }                                   /* keep Tailwind `hidden lg:inline-flex` honest */
+  }
   .at-header-bar { display: flex; align-items: center; justify-content: space-between; gap: 8px; height: 64px; }
   @media (min-width: 1024px) { .at-header-bar { height: 88px; gap: 28px; } }
   .at-logo img { height: 34px; width: auto; display: block; padding: 0; }
@@ -164,9 +173,14 @@
   .s-product-card-sale-price span { font-size: 12px; color: var(--at-ink3) !important; text-decoration: line-through; }
   .s-product-card-rating { font-size: 12px; color: var(--at-ink2); }
   .s-product-card-rating i::before { color: var(--at-orange); }
-  .s-product-card-content-footer salla-add-product-button::part(button) {
-    height: 36px; min-height: 36px; border-radius: 10px; border: 1.5px solid var(--at-olive); color: var(--at-olive); font-size: 13px; font-weight: 600; background: #fff;
+  .s-product-card-content-footer salla-add-product-button::part(button),
+  .s-product-card-content-footer .s-button-element {
+    height: 38px; min-height: 38px; width: 100%; border-radius: 10px; border: 1.5px solid var(--at-olive); color: var(--at-olive);
+    font-size: 13px; font-weight: 600; background: #fff; padding: 0 8px; white-space: nowrap;
   }
+  .s-product-card-content-footer .s-button-element:hover { background: var(--at-olive); color: #fff; }
+  .s-product-card-content-footer .s-button-text { font-size: 12.5px; overflow: visible; text-overflow: clip; }
+  .s-product-card-content-footer salla-add-product-button, .s-product-card-content-footer salla-button { width: 100%; display: block; }
   @media (min-width: 1024px) {
     .s-product-card-content-title { font-size: 15px; }
     .s-product-card-price, .s-product-card-sale-price h4 { font-size: 17px; }
