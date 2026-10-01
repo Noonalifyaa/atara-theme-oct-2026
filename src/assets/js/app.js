@@ -21,6 +21,7 @@ class App extends AppHelpers {
     this.initiateDropdowns();
     this.initiateModals();
     this.initiateCollapse();
+    this.initiateAtaraFooterGroups();
     
     // Ensure #more-menu-dropdown exists before running changeMenuDirection
     const menuDirInterval = setInterval(() => {
@@ -231,6 +232,16 @@ isElementLoaded(selector){
     if (!isOpen) {
       setTimeout(() => this.addClass(id, 'hidden'), 350);
     }
+  }
+
+  /** ATARA: footer link groups collapse on mobile */
+  initiateAtaraFooterGroups() {
+    document.querySelectorAll('.at-footer-group > h4').forEach((h) => {
+      h.addEventListener('click', () => {
+        if (window.innerWidth >= 1024) return;
+        h.parentElement.classList.toggle('is-open');
+      });
+    });
   }
 
   initiateCollapse() {
