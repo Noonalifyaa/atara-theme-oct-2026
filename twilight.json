@@ -29,7 +29,7 @@
             "id": "squar_photo_bg_image_size",
             "type": "items",
             "format": "dropdown-list",
-            "label": "طريقة عرض الصور في قسم قائمة عناصر ",
+            "label": "طريقة عرض الصور في قسم قائمة عناصر",
             "description": null,
             "labelHTML": null,
             "icon": "sicon-list",
@@ -62,7 +62,7 @@
             "description": "يؤثر على العدد الفردي فقط (٣ و٥). العدد الزوجي متساوٍ دائماً. عند التفعيل تُرص الصور في صفوف بحد أقصى ثلاث في السطر",
             "id": "square_photos_equal_size",
             "format": "switch",
-            "required": false,
+            "required": true,
             "value": false,
             "selected": false
         },
@@ -92,7 +92,7 @@
             "type": "static",
             "format": "title",
             "id": "static-label2",
-            "value": "<div class='rounded-lg' style='background-color: #21636d; display: flex; justify-content: center; align-items: center;padding: 15px;margin-bottom: 20px !important; flex-direction: column;gap: 15px;'><h6 style='color: #ffffff;font-size: 15px; font-weight: bold;'> خيارات أعلى الصفحة</h6></div>",
+            "value": "<div class='rounded-lg' ><h6 > خيارات أعلى الصفحة</h6></div>",
             "variant": "h6"
         },
         {
@@ -148,7 +148,7 @@
             "type": "static",
             "format": "title",
             "id": "static-label4",
-            "value": "<div class='rounded-lg' style='background-color: #21636d; display: flex; justify-content: center; align-items: center;padding: 15px;margin-bottom: 20px !important; flex-direction: column;gap: 15px;'><h6 style='color: #ffffff;font-size: 15px; font-weight: bold;'> خيارات أسفل الصفحة</h6></div>",
+            "value": "<div class='rounded-lg' ><h6 > خيارات أسفل الصفحة</h6></div>",
             "variant": "h6"
         },
         {
@@ -171,7 +171,7 @@
             "type": "static",
             "format": "title",
             "id": "static-label6",
-            "value": "<div class='rounded-lg' style='background-color: #21636d; display: flex; justify-content: center; align-items: center;padding: 15px;margin-bottom: 20px !important; flex-direction: column;gap: 15px;'><h6 style='color: #ffffff;font-size: 15px; font-weight: bold;'> خيارات صفحة المنتج</h6></div>",
+            "value": "<div class='rounded-lg' ><h6 > خيارات صفحة المنتج</h6></div>",
             "variant": "h6"
         },
         {
@@ -290,7 +290,7 @@
             "type": "static",
             "format": "title",
             "id": "at-title-brand",
-            "value": "<div class='rounded-lg' style='background-color:#606356;display:flex;justify-content:center;align-items:center;padding:15px;margin-bottom:20px !important;'><h6 style='color:#fff;font-size:15px;font-weight:bold'>أتارا — الهوية والنصوص</h6></div>",
+            "value": "<div class='rounded-lg' ><h6 >أتارا — الهوية والنصوص</h6></div>",
             "variant": "h6"
         },
         {
@@ -471,7 +471,7 @@
             "type": "static",
             "format": "title",
             "id": "at-title-pdp",
-            "value": "<div class='rounded-lg' style='background-color:#606356;display:flex;justify-content:center;align-items:center;padding:15px;margin-bottom:20px !important;'><h6 style='color:#fff;font-size:15px;font-weight:bold'>أتارا — صفحة المنتج</h6></div>",
+            "value": "<div class='rounded-lg' ><h6 >أتارا — صفحة المنتج</h6></div>",
             "variant": "h6"
         },
         {
