@@ -1,50 +1,59 @@
-{# ATARA footer — olive surface, brand column, three link groups (collapsible on mobile), payments, legal #}
+{# ATARA footer (approved v5) — olive-dark surface: brand column + التسوّق · المساعدة · أتارا groups (collapsible on mobile), payments, legal #}
+{% set nav = theme.settings.get('at_nav') %}
+{% set wa = theme.settings.get('at_whatsapp') %}
 <footer data-testid="store-footer" class="store-footer">
   <div aria-label="footer" class="store-footer__inner py-8 lg:py-10">
     <div class="container grid grid-cols-1 lg:grid-cols-5 gap-6 lg:gap-10">
       <div class="lg:col-span-2">
         <a href="{{ link('/') }}" class="inline-block mb-3">
-          <img src="{{ store.logo|cdn(300) }}" alt="{{ store.name }}" style="height:40px;width:auto" loading="lazy">
+          {% if theme.settings.get('at_use_brand_logo') %}
+            <img src="{{ 'images/atara-logo-white.png'|asset }}" alt="Attara Boutique — أتارا بوتيك" style="height:40px;width:auto" loading="lazy">
+          {% else %}
+            <img src="{{ store.logo|cdn(300) }}" alt="{{ store.name }}" style="height:40px;width:auto" loading="lazy">
+          {% endif %}
         </a>
-        {% if theme.settings.get('atara_footer_tagline') %}
-          <p class="text-sm leading-6 mb-4 max-w-sm" style="color:rgba(255,255,255,.78)">{{ theme.settings.get('atara_footer_tagline') }}</p>
-        {% elseif store.description %}
-          <div class="max-w-sm leading-6 mb-4 text-sm" style="color:rgba(255,255,255,.78)">{{ store.description|raw }}</div>
-        {% endif %}
+        <p class="text-sm leading-6 mb-4 max-w-sm" style="color:rgba(255,255,255,.78)">{{ theme.settings.get('at_tagline') }}</p>
         <salla-payments data-testid="store-footer-payments" class="block mb-4"></salla-payments>
         <div class="hidden lg:block"><salla-social data-testid="store-footer-social" class="block"></salla-social></div>
       </div>
 
       <div class="at-footer-group">
-        <h4>{{ trans('blocks.footer.pages_links') }}</h4>
-        <div><salla-menu data-testid="store-footer-menu" source="footer" with-cookie-preferences></salla-menu></div>
-      </div>
-
-      <div class="at-footer-group">
-        <h4>{{ theme.settings.get('atara_help_title', 'المساعدة') }}</h4>
+        <h4>التسوّق</h4>
         <div class="space-y-2 text-sm">
-          {% for item in theme.settings.get('atara_help_links') %}
-            {% if item['atara_help_links.title'] %}<a class="block" href="{{ item['atara_help_links.url'] }}">{{ item['atara_help_links.title'] }}</a>{% endif %}
-          {% endfor %}
+          {% for item in nav %}{% if item.title != 'العروض' %}<a class="block" href="{{ item.url }}">{{ item.title }}</a>{% endif %}{% endfor %}
         </div>
       </div>
 
       <div class="at-footer-group">
-        <h4>{{ store.name }}</h4>
-        <div class="text-sm">
-          {% if theme.settings.get('atara_branch_text') %}<p class="mb-2" style="color:rgba(255,255,255,.78)"><i class="sicon-location"></i> {{ theme.settings.get('atara_branch_text') }}</p>{% endif %}
-          <salla-contacts data-testid="store-footer-contacts"></salla-contacts>
+        <h4>{{ theme.settings.get('at_help_title') }}</h4>
+        <div class="space-y-2 text-sm">
+          {% for item in theme.settings.get('at_help_links') %}
+            {% if item['atara_help_links.title'] %}<a class="block" href="{{ item['atara_help_links.url'] ?: '#' }}">{{ item['atara_help_links.title'] }}</a>{% endif %}
+          {% endfor %}
+          <salla-menu data-testid="store-footer-menu" source="footer" with-cookie-preferences></salla-menu>
+        </div>
+      </div>
+
+      <div class="at-footer-group">
+        <h4>أتارا</h4>
+        <div class="space-y-2 text-sm">
+          <a class="block" href="{{ theme.settings.get('at_branch_url') }}"><i class="sicon-location"></i> {{ theme.settings.get('at_branch') }}</a>
+          <a class="block" href="tel:{{ theme.settings.get('at_phone') }}">الرقم الموحد <bdi dir="ltr">{{ theme.settings.get('at_phone') }}</bdi></a>
+          <a class="block" href="https://wa.me/{{ wa|replace({'+':'',' ':''}) }}" target="_blank" rel="noopener">واتساب <bdi dir="ltr">{{ wa }}</bdi></a>
+          <salla-contacts data-testid="store-footer-contacts" class="at-footer-contacts"></salla-contacts>
           <div class="lg:hidden contact-social mt-3"><salla-social data-testid="store-footer-social-mobile"></salla-social></div>
-          {% if store.settings.tax.number %}
-            <p class="mt-3 text-xs" style="color:rgba(255,255,255,.6)">{{ trans('common.elements.tax_number') }}: <b>{{ store.settings.tax.number }}</b></p>
-          {% endif %}
           <salla-trust-badges data-testid="store-footer-trust-badges" dark class="mt-3 block"></salla-trust-badges>
         </div>
       </div>
     </div>
 
-    <div class="container at-footer-legal md:flex items-center justify-between">
-      <span class="copyright-text">{% hook copyright %}</span>
+    <div class="container at-footer-legal md:flex items-center justify-between gap-4">
+      <span>
+        © {{ store.name }} {{ "now"|date("Y") }}
+        {% if store.settings.tax.number %} · {{ trans('common.elements.tax_number') }} {{ store.settings.tax.number }}{% endif %}
+        · السجل التجاري متاح عند الطلب
+        <span class="copyright-text">{% hook copyright %}</span>
+      </span>
       <salla-apps-icons data-testid="store-footer-apps"></salla-apps-icons>
     </div>
   </div>
