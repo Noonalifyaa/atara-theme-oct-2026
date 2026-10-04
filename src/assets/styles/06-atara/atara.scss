@@ -133,7 +133,7 @@
       font-size: 15px; font-weight: 500; white-space: nowrap; padding: 4px 0; border-bottom: 2px solid transparent; color: var(--at-ink);
       display: inline-flex; align-items: center; gap: 4px;
     }
-    .at-nav custom-main-menu li.root-level.has-children > a::after { content: ""; width: 8px; height: 8px; border-right: 1.5px solid currentColor; border-bottom: 1.5px solid currentColor; transform: rotate(45deg) translateY(-3px); margin-inline-start: 4px; }
+    .at-nav custom-main-menu li.root-level.has-children > a::after { opacity: .7; }   /* Raed draws the chevron; keep it subtle */
     .at-nav custom-main-menu li.root-level > a:hover, .at-nav custom-main-menu li.root-level.is-active > a { color: var(--at-olive); font-weight: 700; border-bottom-color: var(--at-olive); }
     .at-nav custom-main-menu li.root-level.at-offers > a { color: var(--at-olive); font-weight: 700; }
     .at-nav custom-main-menu li.root-level.at-offers > a::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--at-orange); margin-inline-end: 6px; }
@@ -334,6 +334,7 @@
 
   /* ---------------------------------------------------------------- footer */
   .store-footer, footer.store-footer { background: var(--at-olive-dark); color: #fff; }
+  .store-footer .store-footer__inner, .footer-is-light .store-footer__inner, .footer-is-dark .store-footer__inner { background: transparent !important; color: #fff; }
   .store-footer a { color: rgba(255,255,255,.78); }
   .store-footer h4, .store-footer .footer-title { color: #fff; font-size: 13px; font-weight: 700; }
   .store-footer .at-pay span { background: #fff; color: var(--at-ink); font-size: 10px; font-weight: 600; border-radius: 6px; padding: 5px 8px; }
