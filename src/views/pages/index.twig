@@ -63,7 +63,7 @@ prayer picks → trust → reviews → help. Switch the setting off to use merch
     <div class="container">
       <div class="at-sec-head"><h2>مختارات هذا الأسبوع</h2><a class="at-link" href="{{ link('products') }}">عرض الكل <i class="sicon-keyboard_arrow_left"></i></a></div>
       <div class="at-products at-products--scroll">
-        <salla-products-list source="latest" limit="4" horizontal-cards></salla-products-list>
+        <salla-products-list source="latest" limit="4"></salla-products-list>
       </div>
     </div>
   </section>
@@ -72,7 +72,7 @@ prayer picks → trust → reviews → help. Switch the setting off to use merch
   {% set occs = [
     {'i': 'sicon-sun', 't': 'ليومك', 'u': nav[2].url},
     {'i': 'sicon-moon', 't': 'للصلاة', 'u': nav[0].url},
-    {'i': 'sicon-plane', 't': 'للسفر', 'u': nav[2].children[3].url ?? nav[2].url},
+    {'i': 'sicon-luggage-cart', 't': 'للسفر', 'u': nav[2].children[3].url ?? nav[2].url},
     {'i': 'sicon-gift', 't': 'للهدايا', 'u': nav[5].url}
   ] %}
   <section class="s-block s-block--atara-occasions" data-testid="store-home-atara-occasions">
@@ -113,8 +113,8 @@ prayer picks → trust → reviews → help. Switch the setting off to use merch
   <section class="s-block s-block--atara-trust" data-testid="store-home-atara-trust">
     <div class="container">
       <div class="at-trust">
-        <div class="at-trust__t"><i class="sicon-truck"></i><div><b>توصيل 2–4 أيام</b><span>لكل مدن المملكة، مجاني فوق 399 ر.س</span></div></div>
-        <div class="at-trust__t"><i class="sicon-refresh"></i><div><b>استبدال خلال 7 أيام</b><span>وفق سياسة واضحة بلا مفاجآت</span></div></div>
+        <div class="at-trust__t"><i class="sicon-shipping-fast"></i><div><b>توصيل 2–4 أيام</b><span>لكل مدن المملكة، مجاني فوق 399 ر.س</span></div></div>
+        <div class="at-trust__t"><i class="sicon-swap-stroke"></i><div><b>استبدال خلال 7 أيام</b><span>وفق سياسة واضحة بلا مفاجآت</span></div></div>
         <div class="at-trust__t"><i class="sicon-location"></i><div><b>فرع جدة</b><span>حي الحمراء — جرّبي القياس بنفسك</span></div></div>
         <div class="at-trust__t"><i class="sicon-whatsapp"></i><div><b>مساعدة في الاختيار</b><span>واتساب 9ص–11م، نرد على سؤال المقاس</span></div></div>
       </div>
