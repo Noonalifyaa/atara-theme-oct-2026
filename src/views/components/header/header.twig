@@ -25,7 +25,11 @@ seven approved entries: شراشف الصلاة · سجاجيد الصلاة · 
               <i class="sicon-menu"></i>
             </a>
             <a data-testid="store-header-logo" class="navbar-brand at-logo" href="{{ store.url }}">
-              <img fetchpriority="high" loading="eager" src="{{ store.logo|cdn(300) }}" alt="{{ store.name }} logo">
+              {% if theme.settings.get('at_use_brand_logo') %}
+                <img fetchpriority="high" loading="eager" src="{{ 'images/atara-logo.png'|asset }}" alt="Attara Boutique — أتارا بوتيك">
+              {% else %}
+                <img fetchpriority="high" loading="eager" src="{{ store.logo|cdn(300) }}" alt="{{ store.name }} logo">
+              {% endif %}
               {% if is_page('index') %}
                 <h1 class="sr-only">{{ store.name }}</h1>
               {% else %}
@@ -35,7 +39,7 @@ seven approved entries: شراشف الصلاة · سجاجيد الصلاة · 
           </div>
 
           <div class="at-header-search hidden lg:block">
-            <salla-search data-testid="store-header-search" inline oval height="46"></salla-search>
+            <salla-search data-testid="store-header-search" inline oval height="46" placeholder="ابحثي عن شرشف، سجادة، جلابية…"></salla-search>
           </div>
 
           <div class="at-header-actions">
@@ -54,7 +58,7 @@ seven approved entries: شراشف الصلاة · سجاجيد الصلاة · 
 
         {# Mobile: visible search field under the bar #}
         <div class="at-mobile-search lg:hidden pb-3">
-          <salla-search data-testid="store-header-search-mobile" inline oval height="46"></salla-search>
+          <salla-search data-testid="store-header-search-mobile" inline oval height="46" placeholder="ابحثي عن شرشف، سجادة، جلابية…"></salla-search>
         </div>
       </div>
 
