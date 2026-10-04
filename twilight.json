@@ -29,7 +29,7 @@
             "id": "squar_photo_bg_image_size",
             "type": "items",
             "format": "dropdown-list",
-            "label": "طريقة عرض الصور في قسم قائمة عناصر",
+            "label": "طريقة عرض الصور في قسم قائمة عناصر ",
             "description": null,
             "labelHTML": null,
             "icon": "sicon-list",
@@ -62,7 +62,7 @@
             "description": "يؤثر على العدد الفردي فقط (٣ و٥). العدد الزوجي متساوٍ دائماً. عند التفعيل تُرص الصور في صفوف بحد أقصى ثلاث في السطر",
             "id": "square_photos_equal_size",
             "format": "switch",
-            "required": true,
+            "required": false,
             "value": false,
             "selected": false
         },
@@ -92,7 +92,7 @@
             "type": "static",
             "format": "title",
             "id": "static-label2",
-            "value": "<div class='rounded-lg' ><h6 > خيارات أعلى الصفحة</h6></div>",
+            "value": "<div class='rounded-lg' style='background-color: #21636d; display: flex; justify-content: center; align-items: center;padding: 15px;margin-bottom: 20px !important; flex-direction: column;gap: 15px;'><h6 style='color: #ffffff;font-size: 15px; font-weight: bold;'> خيارات أعلى الصفحة</h6></div>",
             "variant": "h6"
         },
         {
@@ -148,7 +148,7 @@
             "type": "static",
             "format": "title",
             "id": "static-label4",
-            "value": "<div class='rounded-lg' ><h6 > خيارات أسفل الصفحة</h6></div>",
+            "value": "<div class='rounded-lg' style='background-color: #21636d; display: flex; justify-content: center; align-items: center;padding: 15px;margin-bottom: 20px !important; flex-direction: column;gap: 15px;'><h6 style='color: #ffffff;font-size: 15px; font-weight: bold;'> خيارات أسفل الصفحة</h6></div>",
             "variant": "h6"
         },
         {
@@ -171,7 +171,7 @@
             "type": "static",
             "format": "title",
             "id": "static-label6",
-            "value": "<div class='rounded-lg' ><h6 > خيارات صفحة المنتج</h6></div>",
+            "value": "<div class='rounded-lg' style='background-color: #21636d; display: flex; justify-content: center; align-items: center;padding: 15px;margin-bottom: 20px !important; flex-direction: column;gap: 15px;'><h6 style='color: #ffffff;font-size: 15px; font-weight: bold;'> خيارات صفحة المنتج</h6></div>",
             "variant": "h6"
         },
         {
@@ -290,7 +290,7 @@
             "type": "static",
             "format": "title",
             "id": "at-title-brand",
-            "value": "<div class='rounded-lg' ><h6 >أتارا — الهوية والنصوص</h6></div>",
+            "value": "<div class='rounded-lg' style='background-color:#606356;display:flex;justify-content:center;align-items:center;padding:15px;margin-bottom:20px !important;'><h6 style='color:#fff;font-size:15px;font-weight:bold'>أتارا — الهوية والنصوص</h6></div>",
             "variant": "h6"
         },
         {
@@ -314,6 +314,244 @@
             "required": false,
             "selected": true,
             "description": "يثبّت اللون الأساسي على زيتوني أتارا #606356 حسب دليل الهوية مهما كان اختيار لوحة التحكم."
+        },
+        {
+            "type": "boolean",
+            "id": "atara_home_design",
+            "label": "الصفحة الرئيسية بالتصميم المعتمد",
+            "format": "switch",
+            "icon": "sicon-toggle-off",
+            "required": false,
+            "value": true,
+            "selected": true,
+            "description": "تعرض الرئيسية بترتيب التصميم المعتمد (افتتاحية → تصنيفات → مختارات → مناسبات → عرض → للصلاة → ثقة → تقييمات → مساعدة). أوقفه لاستخدام مكوّنات الصفحة من المحرر."
+        },
+        {
+            "type": "boolean",
+            "id": "atara_home_append_components",
+            "label": "إضافة مكوّنات المحرر أسفل التصميم المعتمد",
+            "format": "switch",
+            "icon": "sicon-toggle-off",
+            "required": false,
+            "value": false,
+            "selected": false,
+            "description": "عند تفعيله تُعرض المكوّنات المرتّبة في المحرر بعد أقسام التصميم المعتمد."
+        },
+        {
+            "type": "boolean",
+            "id": "atara_use_brand_logo",
+            "label": "استخدام شعار أتارا المضمّن في الثيم",
+            "format": "switch",
+            "icon": "sicon-toggle-off",
+            "required": false,
+            "value": true,
+            "selected": true,
+            "description": "يعرض شعار Attara Boutique من الثيم (زيتوني في الهيدر، أبيض في الفوتر) بدل شعار المتجر من لوحة التحكم."
+        },
+        {
+            "type": "string",
+            "id": "atara_hero_kicker",
+            "label": "الافتتاحية — السطر العلوي",
+            "format": "text",
+            "icon": "sicon-format-text-alt",
+            "required": false,
+            "value": "أتارا بوتيك",
+            "description": "",
+            "maxLength": 60
+        },
+        {
+            "type": "string",
+            "id": "atara_hero_title",
+            "label": "الافتتاحية — العنوان",
+            "format": "text",
+            "icon": "sicon-format-text-alt",
+            "required": false,
+            "value": "أناقة تعيشينها براحة.",
+            "description": "",
+            "maxLength": 80
+        },
+        {
+            "type": "string",
+            "id": "atara_hero_lead",
+            "label": "الافتتاحية — الوصف",
+            "format": "text",
+            "icon": "sicon-format-text-alt",
+            "required": false,
+            "value": "ملابس ومختارات للصلاة ويومك وسفرك ولحظات الإهداء — بتفاصيل واضحة تساعدك على الاختيار بثقة.",
+            "description": "",
+            "maxLength": 200
+        },
+        {
+            "type": "string",
+            "id": "atara_hero_image",
+            "label": "الافتتاحية — صورة المنتج الحقيقية",
+            "format": "image",
+            "icon": "sicon-image",
+            "required": false,
+            "value": "",
+            "description": "صورة واحدة لمنتج حقيقي (حسب الاستراتيجية). إن تُركت فارغة تُعرض خلفية الثيم."
+        },
+        {
+            "type": "string",
+            "id": "atara_hero_cta1",
+            "label": "الافتتاحية — الزر الأساسي",
+            "format": "text",
+            "icon": "sicon-format-text-alt",
+            "required": false,
+            "value": "تسوّقي شراشف الصلاة",
+            "description": "",
+            "maxLength": 40
+        },
+        {
+            "type": "string",
+            "id": "atara_hero_cta1_url",
+            "label": "الافتتاحية — رابط الزر الأساسي",
+            "format": "text",
+            "icon": "sicon-format-text-alt",
+            "required": false,
+            "value": "",
+            "description": "",
+            "maxLength": 200
+        },
+        {
+            "type": "string",
+            "id": "atara_hero_cta2",
+            "label": "الافتتاحية — الزر الثانوي",
+            "format": "text",
+            "icon": "sicon-format-text-alt",
+            "required": false,
+            "value": "سجاجيد الصلاة",
+            "description": "",
+            "maxLength": 40
+        },
+        {
+            "type": "string",
+            "id": "atara_hero_cta2_url",
+            "label": "الافتتاحية — رابط الزر الثانوي",
+            "format": "text",
+            "icon": "sicon-format-text-alt",
+            "required": false,
+            "value": "",
+            "description": "",
+            "maxLength": 200
+        },
+        {
+            "type": "string",
+            "id": "atara_offer_tag",
+            "label": "العرض — الوسم",
+            "format": "text",
+            "icon": "sicon-format-text-alt",
+            "required": false,
+            "value": "عرض محدود",
+            "description": "",
+            "maxLength": 30
+        },
+        {
+            "type": "string",
+            "id": "atara_offer_title",
+            "label": "العرض — العنوان",
+            "format": "text",
+            "icon": "sicon-format-text-alt",
+            "required": false,
+            "value": "قطعتان من الشراشف الإسبانية بـ 196 ر.س",
+            "description": "",
+            "maxLength": 120
+        },
+        {
+            "type": "string",
+            "id": "atara_offer_terms",
+            "label": "العرض — الشروط (تظهر دائمًا)",
+            "format": "text",
+            "icon": "sicon-format-text-alt",
+            "required": false,
+            "value": "سعر القطعة الواحدة 110 ر.س · يُطبّق الخصم تلقائيًا عند إضافة قطعتين من الشراشف المشمولة · حتى 7 أكتوبر 2026 · لا يُجمع مع كود خصم آخر",
+            "description": "",
+            "maxLength": 300
+        },
+        {
+            "type": "string",
+            "id": "atara_offer_cta",
+            "label": "العرض — نص الزر",
+            "format": "text",
+            "icon": "sicon-format-text-alt",
+            "required": false,
+            "value": "شاهدي الشراشف المشمولة",
+            "description": "",
+            "maxLength": 40
+        },
+        {
+            "type": "string",
+            "id": "atara_offer_url",
+            "label": "العرض — رابط الزر",
+            "format": "text",
+            "icon": "sicon-format-text-alt",
+            "required": false,
+            "value": "/offers",
+            "description": "",
+            "maxLength": 200
+        },
+        {
+            "type": "string",
+            "id": "atara_phone",
+            "label": "الرقم الموحد",
+            "format": "text",
+            "icon": "sicon-format-text-alt",
+            "required": false,
+            "value": "920021150",
+            "description": "",
+            "maxLength": 20
+        },
+        {
+            "type": "string",
+            "id": "atara_branch_short",
+            "label": "الفرع — النص المختصر (القائمة الجانبية)",
+            "format": "text",
+            "icon": "sicon-format-text-alt",
+            "required": false,
+            "value": "فرع جدة — حي الحمراء",
+            "description": "",
+            "maxLength": 60
+        },
+        {
+            "id": "atara_nav",
+            "type": "collection",
+            "format": "collection",
+            "required": false,
+            "minLength": 0,
+            "maxLength": 7,
+            "item_label": "عنصر قائمة",
+            "label": "القائمة الرئيسية (7 عناصر معتمدة)",
+            "description": "اتركها فارغة لاستخدام القائمة المعتمدة المضمّنة في الثيم. لربط كل عنصر بتصنيف حقيقي أضف العناصر هنا: العنوان، الرابط، والعناصر الفرعية بصيغة «اسم|رابط, اسم|رابط».",
+            "value": [],
+            "fields": [
+                {
+                    "type": "string",
+                    "id": "atara_nav.title",
+                    "label": "العنوان",
+                    "format": "text",
+                    "required": true,
+                    "maxLength": 40,
+                    "icon": "sicon-format-text-alt"
+                },
+                {
+                    "type": "string",
+                    "id": "atara_nav.url",
+                    "label": "الرابط",
+                    "format": "text",
+                    "required": true,
+                    "maxLength": 200,
+                    "icon": "sicon-link"
+                },
+                {
+                    "type": "string",
+                    "id": "atara_nav.children",
+                    "label": "العناصر الفرعية (اسم|رابط, اسم|رابط)",
+                    "format": "text",
+                    "required": false,
+                    "maxLength": 600,
+                    "icon": "sicon-list"
+                }
+            ]
         },
         {
             "type": "string",
@@ -471,7 +709,7 @@
             "type": "static",
             "format": "title",
             "id": "at-title-pdp",
-            "value": "<div class='rounded-lg' ><h6 >أتارا — صفحة المنتج</h6></div>",
+            "value": "<div class='rounded-lg' style='background-color:#606356;display:flex;justify-content:center;align-items:center;padding:15px;margin-bottom:20px !important;'><h6 style='color:#fff;font-size:15px;font-weight:bold'>أتارا — صفحة المنتج</h6></div>",
             "variant": "h6"
         },
         {
