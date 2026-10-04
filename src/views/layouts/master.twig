@@ -57,6 +57,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     {{ theme.settings.set('placeholder', 'images/placeholder.png') }}
+    {% include 'pages.partials.atara-defaults' %}
 
     <script defer data-cfasync="false" crossorigin="anonymous" src="{{ 'product-card.js'|asset }}"></script>
     <script defer src="{{ 'main-menu.js'|asset }}"></script>
@@ -75,11 +76,15 @@
         window.enable_add_product_toast = "{{ theme.settings.get('enable_add_product_toast', true) }}"
         window.notify_when_available_in_card = "{{ theme.settings.get('notify_when_available_in_card', true) }}"
         window.atara = {
-            trackUrl: {{ theme.settings.get('atara_track_url', '') | json_encode | raw }},
-            helpUrl: {{ theme.settings.get('atara_help_url', '') | json_encode | raw }},
-            branchText: {{ theme.settings.get('atara_branch_text', '') | json_encode | raw }},
-            branchUrl: {{ theme.settings.get('atara_branch_url', '') | json_encode | raw }},
-            whatsapp: {{ theme.settings.get('atara_whatsapp', '') | json_encode | raw }}
+            nav: {{ theme.settings.get('at_nav') | json_encode | raw }},
+            trackUrl: {{ theme.settings.get('at_track_url') | json_encode | raw }},
+            helpUrl: {{ theme.settings.get('at_help_url') | json_encode | raw }},
+            branchText: {{ theme.settings.get('at_branch_short') | json_encode | raw }},
+            branchUrl: {{ theme.settings.get('at_branch_url') | json_encode | raw }},
+            whatsapp: {{ theme.settings.get('at_whatsapp') | json_encode | raw }},
+            promoImage: {{ 'images/atara-promo-jalabiya.svg' | asset | json_encode | raw }},
+            allText: 'عرض كل',
+            byUse: [{t:'ليومك',u:{{ theme.settings.get('at_nav')[2].url | json_encode | raw }}},{t:'للسفر',u:{{ (theme.settings.get('at_nav')[2].children[3].url ?? theme.settings.get('at_nav')[2].url) | json_encode | raw }}},{t:'للمناسبات واللقاءات',u:{{ theme.settings.get('at_nav')[2].url | json_encode | raw }}},{t:'الحج والعمرة',u:{{ (theme.settings.get('at_nav')[2].children[2].url ?? theme.settings.get('at_nav')[2].url) | json_encode | raw }}}]
         }
     </script>
     
@@ -129,8 +134,8 @@
 </noscript>
 <div class="app-inner flex flex-col min-h-full">
     {% hook 'body:start' %}
-    {% if theme.settings.get('atara_promo_text') %}
-      <div class="at-promo" data-testid="store-promo-bar">{{ theme.settings.get('atara_promo_text') }}</div>
+    {% if theme.settings.get('at_promo') %}
+      <div class="at-promo" data-testid="store-promo-bar">{{ theme.settings.get('at_promo') }}</div>
     {% endif %}
     {% component 'header.header' %}
     <main id="main-content" role="main"{{ (page.slug == 'product.single' or page.slug starts with 'product.index') ? ' class="flex flex-col space-y-8 sm:space-y-16"' : '' }}>
