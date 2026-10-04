@@ -4,10 +4,150 @@
 | page             | object     |                                                                     |
 | page.title       | string     | *could be html                                                      |
 | page.slug        | string     | ex: "cat.show"                                                      |
+
+ATARA home — renders the approved redesign (v5) out of the box when `atara_home_design` is on
+(default). Block order follows the design: hero → categories → weekly picks → occasions → offer →
+prayer picks → trust → reviews → help. Switch the setting off to use merchant-arranged components.
 #}
 {% extends "layouts.master" %}
 {% block content %}
+{% if theme.settings.get('at_home_design') %}
+  {% set nav = theme.settings.get('at_nav') %}
+  {% set wa = theme.settings.get('at_whatsapp')|replace({'+':'',' ':''}) %}
+
+  {# 1 · Hero #}
+  <section class="s-block s-block--atara-hero" data-testid="store-home-atara-hero">
+    <div class="container">
+      <div class="at-hero">
+        <div class="at-hero__art"><img src="{{ theme.settings.get('at_hero_image') }}" alt="{{ theme.settings.get('at_hero_title') }}" fetchpriority="high" loading="eager"></div>
+        <div class="at-hero__copy">
+          <div class="at-hero__kicker">{{ theme.settings.get('at_hero_kicker') }}</div>
+          <h2 class="at-hero__title">{{ theme.settings.get('at_hero_title') }}</h2>
+          <p class="at-hero__lead">{{ theme.settings.get('at_hero_lead') }}</p>
+          <div class="at-hero__cta">
+            <a class="btn btn--primary" href="{{ theme.settings.get('at_hero_cta1_url') }}">{{ theme.settings.get('at_hero_cta1') }}</a>
+            <a class="btn btn--secondary" href="{{ theme.settings.get('at_hero_cta2_url') }}">{{ theme.settings.get('at_hero_cta2') }}</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {# 2 · Shop by category (8 tiles, approved order) #}
+  {% set cats = [
+    {'n': 'شراشف الصلاة', 'img': 'cat-1', 'url': nav[0].url},
+    {'n': 'سجاجيد الصلاة', 'img': 'cat-2', 'url': nav[1].url},
+    {'n': 'جلابيات', 'img': 'cat-3', 'url': nav[2].children[0].url ?? nav[2].url},
+    {'n': 'أزياء محجبات', 'img': 'cat-4', 'url': nav[2].children[1].url ?? nav[2].url},
+    {'n': 'عبايات الحج والعمرة', 'img': 'cat-5', 'url': nav[2].children[2].url ?? nav[2].url},
+    {'n': 'أطقم السفر', 'img': 'cat-6', 'url': nav[2].children[3].url ?? nav[2].url},
+    {'n': 'الطرح والإكسسوارات', 'img': 'cat-7', 'url': nav[3].url},
+    {'n': 'الأطياب', 'img': 'cat-8', 'url': nav[4].url}
+  ] %}
+  <section class="s-block s-block--atara-categories" data-testid="store-home-atara-categories">
+    <div class="container">
+      <div class="at-sec-head"><h2>تسوّقي حسب التصنيف</h2><a class="at-link" href="{{ link('categories') }}">كل التصنيفات <i class="sicon-keyboard_arrow_left"></i></a></div>
+      <div class="at-catgrid">
+        {% for c in cats %}
+          <a class="at-catcard" href="{{ c.url }}">
+            <div class="at-catcard__thumb"><img src="{{ ('images/atara-' ~ c.img ~ '.svg')|asset }}" alt="{{ c.n }}" loading="lazy"></div>
+            <div class="at-catcard__n">{{ c.n }}</div>
+          </a>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+
+  {# 3 · Weekly picks (latest products, 4 on desktop / horizontal scroll on mobile) #}
+  <section class="s-block s-block--atara-picks" data-testid="store-home-atara-picks">
+    <div class="container">
+      <div class="at-sec-head"><h2>مختارات هذا الأسبوع</h2><a class="at-link" href="{{ link('products') }}">عرض الكل <i class="sicon-keyboard_arrow_left"></i></a></div>
+      <div class="at-products at-products--scroll">
+        <salla-products-list source="latest" limit="4" horizontal-cards></salla-products-list>
+      </div>
+    </div>
+  </section>
+
+  {# 4 · Curated by occasion (never a menu entry) #}
+  {% set occs = [
+    {'i': 'sicon-sun', 't': 'ليومك', 'u': nav[2].url},
+    {'i': 'sicon-moon', 't': 'للصلاة', 'u': nav[0].url},
+    {'i': 'sicon-plane', 't': 'للسفر', 'u': nav[2].children[3].url ?? nav[2].url},
+    {'i': 'sicon-gift', 't': 'للهدايا', 'u': nav[5].url}
+  ] %}
+  <section class="s-block s-block--atara-occasions" data-testid="store-home-atara-occasions">
+    <div class="container">
+      <div class="at-sec-head"><h2 style="font-size:17px">مختارات حسب المناسبة</h2><span class="at-dim">صفحات منسّقة من التصنيفات نفسها</span></div>
+      <div class="at-occs">
+        {% for o in occs %}<a class="at-occ" href="{{ o.u }}"><i class="{{ o.i }}"></i><span>{{ o.t }}</span></a>{% endfor %}
+      </div>
+    </div>
+  </section>
+
+  {# 5 · Offer with explicit terms #}
+  <section class="s-block s-block--atara-offer" data-testid="store-home-atara-offer">
+    <div class="container">
+      <div class="at-offer">
+        <svg class="at-offer__strips" viewBox="0 0 260 160" aria-hidden="true"><g fill="#fff"><path d="M40 160 L110 0 h34 L74 160z"/><path d="M98 160 L168 0 h34 L132 160z"/><path d="M156 160 L226 0 h34 L190 160z"/></g></svg>
+        <div>
+          <span class="at-offer__tag">{{ theme.settings.get('at_offer_tag') }}</span>
+          <h2>{{ theme.settings.get('at_offer_title') }}</h2>
+          <div class="at-offer__terms">{{ theme.settings.get('at_offer_terms') }}</div>
+        </div>
+        <a class="btn" href="{{ theme.settings.get('at_offer_url') }}">{{ theme.settings.get('at_offer_cta') }}</a>
+      </div>
+    </div>
+  </section>
+
+  {# 6 · Prayer picks #}
+  <section class="s-block s-block--atara-prayer" data-testid="store-home-atara-prayer">
+    <div class="container">
+      <div class="at-sec-head"><h2>للصلاة — اختاري التفاصيل التي ترتاحين إليها</h2><a class="at-link hidden lg:inline-flex" href="{{ nav[0].url }}">عرض الكل <i class="sicon-keyboard_arrow_left"></i></a></div>
+      <div class="at-products">
+        <salla-products-list source="offers" limit="4"></salla-products-list>
+      </div>
+    </div>
+  </section>
+
+  {# 7 · Trust strip #}
+  <section class="s-block s-block--atara-trust" data-testid="store-home-atara-trust">
+    <div class="container">
+      <div class="at-trust">
+        <div class="at-trust__t"><i class="sicon-truck"></i><div><b>توصيل 2–4 أيام</b><span>لكل مدن المملكة، مجاني فوق 399 ر.س</span></div></div>
+        <div class="at-trust__t"><i class="sicon-refresh"></i><div><b>استبدال خلال 7 أيام</b><span>وفق سياسة واضحة بلا مفاجآت</span></div></div>
+        <div class="at-trust__t"><i class="sicon-location"></i><div><b>فرع جدة</b><span>حي الحمراء — جرّبي القياس بنفسك</span></div></div>
+        <div class="at-trust__t"><i class="sicon-whatsapp"></i><div><b>مساعدة في الاختيار</b><span>واتساب 9ص–11م، نرد على سؤال المقاس</span></div></div>
+      </div>
+    </div>
+  </section>
+
+  {# 8 · Reviews — real store testimonials when enabled, otherwise the block is skipped (no invented reviews) #}
+  {% if store.settings.rating_enabled %}
+  <section class="s-block s-block--atara-reviews" data-testid="store-home-atara-reviews">
+    <div class="container">
+      <div class="at-sec-head"><h2>ماذا قالت العميلات</h2></div>
+      <salla-reviews limit="6" type="store"></salla-reviews>
+    </div>
+  </section>
+  {% endif %}
+
+  {# 9 · Help card #}
+  <section class="s-block s-block--atara-help" data-testid="store-home-atara-help">
+    <div class="container">
+      <div class="at-help">
+        <div class="at-help__ic"><i class="sicon-whatsapp"></i></div>
+        <div class="flex-1"><b>تحتاجين مساعدة في الاختيار؟</b><span>أرسلي اسم القطعة ومقاسك المعتاد وسنوضح لك قياسات القطعة المتاحة.</span></div>
+        <a class="btn btn--primary hidden lg:inline-flex" href="https://wa.me/{{ wa }}" target="_blank" rel="noopener">تواصلي معنا</a>
+      </div>
+    </div>
+  </section>
+
+  {% if theme.settings.get('atara_home_append_components') %}
     {% component home %}
+  {% endif %}
+{% else %}
+    {% component home %}
+{% endif %}
 {% endblock %}
 {% block scripts %}
     <script defer src="{{ 'home.js' | asset }}"></script>
