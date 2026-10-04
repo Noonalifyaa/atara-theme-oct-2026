@@ -20,7 +20,11 @@ class NavigationMenu extends HTMLElement {
                 this.visibleMenus = [];
                 this.overflowMenus = [];
 
-                return salla.api.component.getMenus()
+                // ATARA: the approved 7-entry navigation is shipped with the theme (window.atara.nav, built in
+                // partials/atara/defaults.twig from settings). Fall back to the merchant menu when absent.
+                const fixed = window.atara && Array.isArray(window.atara.nav) && window.atara.nav.length ? window.atara.nav : null;
+                const source = fixed ? Promise.resolve({ data: fixed.map(m => ({ ...m, atara: true, attrs: '', link_attrs: '' })) }) : salla.api.component.getMenus();
+                return source
                 .then(({ data }) => {
                     this.menus = data;
                     return this.render()
@@ -60,6 +64,19 @@ class NavigationMenu extends HTMLElement {
         try { isActive = isRootMenu && menu.url && new URL(menu.url, location.origin).pathname === location.pathname; } catch (e) {}
         return `!hidden lg:!block ${isRootMenu ? 'root-level lg:!inline-block' : 'relative'} ${menu.products ? ' mega-menu' : ''}
         ${this.hasChildren(menu) ? ' has-children' : ''}${isOffers ? ' at-offers' : ''}${isActive ? ' is-active' : ''}`
+    }
+
+    /** ATARA: approved dropdown — links column · "حسب الاستخدام" column · promo card */
+    getAtaraDropdown(menu) {
+        const a = window.atara || {};
+        const links = menu.children.map(c => `<a href="${c.url}">${c.title}</a>`).join('');
+        const uses = (a.byUse || []).map(u => `<a href="${u.u}">${u.t}</a>`).join('');
+        return `
+        <div class="sub-menu at-dd">
+            <div class="at-dd__col"><h5>${menu.title}</h5>${links}<a class="at-dd__all" href="${menu.url}">${a.allText || 'عرض كل'} ${menu.title} <i class="sicon-keyboard_arrow_left"></i></a></div>
+            <div class="at-dd__col"><h5>حسب الاستخدام</h5>${uses}</div>
+            ${a.promoImage ? `<a class="at-dd__promo" href="${(menu.children[0] || menu).url}"><img src="${a.promoImage}" alt=""><span class="at-dd__cap"><b>جديد ${menu.title}</b><small>قطع جديدة بقصّات واسعة</small></span></a>` : ''}
+        </div>`;
     }
 
     /** ATARA: utility links shown at the bottom of the mobile drawer (tracking, help, branch, WhatsApp) */
@@ -118,7 +135,8 @@ class NavigationMenu extends HTMLElement {
             <a href="${menu.url}" aria-label="${menu.title || 'category'}" ${menu.link_attrs}>
                 <span>${menu.title}</span>
             </a>
-            ${this.hasChildren(menu) ? `
+            ${this.hasChildren(menu) && menu.atara && isRootMenu ? this.getAtaraDropdown(menu) : ''}
+            ${this.hasChildren(menu) && !(menu.atara && isRootMenu) ? `
                 <div class="sub-menu ${this.hasProducts(menu) ? 'w-full left-0 flex' : 'w-56'}">
                     <ul class="${this.hasProducts(menu) ? 'w-56 shrink-0 m-8 rtl:ml-0 ltr:mr-0' : ''}">
                         ${menu.children.map((subMenu) => this.getDesktopMenu(subMenu, false)).join('\n')}
